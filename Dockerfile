@@ -7,9 +7,10 @@ ENV SWIFT_PLATFORM ubuntu14.04
 
 # Install related packages
 RUN apt-get update && \
-    apt-get install -y build-essential wget clang libedit-dev python2.7 python2.7-dev libicu52 rsync libxml2 git awscli && \
+    apt-get install -y build-essential wget libcurl4-openssl-dev  clang libedit-dev python2.7 python2.7-dev libicu-dev binutils rsync libxml2 git awscli && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
 
 # Install Swift keys
 RUN wget -q -O - https://swift.org/keys/all-keys.asc | gpg --import - && \
