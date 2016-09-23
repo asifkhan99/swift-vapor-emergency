@@ -189,6 +189,10 @@ drop.get("emergency") { request in
   return try DataSource().makeJSON()
 }
 
+drop.get("product") { request in
+  return try DataSourceProduct().makeJSON()
+}
+
 // Temporarily unavailable
 //drop.any("validation") { request in
 //    return try Employee(request: request)
