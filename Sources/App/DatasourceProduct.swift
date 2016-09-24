@@ -1,9 +1,7 @@
 import Vapor
 import Foundation
-import FluentMySQL
-import Fluent
 
-/**struct Product {
+struct Product {
     let name: String
     let code: String
     let image: String
@@ -16,7 +14,7 @@ extension Product: JSONRepresentable {
             "code": code,
             "image": image])
     }
-}*/
+}
 
 class DataSourceProduct: JSONRepresentable {
 
@@ -28,30 +26,12 @@ class DataSourceProduct: JSONRepresentable {
     func makeJSON() throws -> JSON {
 
     //    let content = DataSource().source.map {$0.makeJSON()}
-        driver = MySQLDriver.makeTestConnection()
-        database = Database(driver)
 
-        var product = Product(id: nil, name: "Vapor", email: "vapor@qutheory.io")
-        Product.database = database
-
-       do {
-            try product.save()
-       } catch {
-          print("Error while saving")
-       }
-
-       do {
-       let found = try Product.find(1)
-       return try found;
-       }catch {
-          print("Error while fetching")
-       }
-
-    /**    return try JSON(node: [
+        return try JSON(node: [
                 "version" : APIVersion,
                 "products": JSON(DataSourceProduct().source.map { try $0.makeJSON()})
             ])
 
-          } */
+          } 
 
 }
